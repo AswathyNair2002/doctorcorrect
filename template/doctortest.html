@@ -1,0 +1,43 @@
+{% extends 'doctorbase.html' %}
+{% block content  %}
+<style>
+    td{
+        padding: 10px;
+    }
+</style>
+
+<h1 style="margin:20px;">Test</h1><hr>
+<center>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Enter the test to be done</td>
+                <td><input type="text" class="form-control" name="txtTest"  required ></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><textarea class="form-control" name="txtDesc" ></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="btnSubmit" class="btn btn-dark" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</center>
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+        if(msg=="Prescription added")
+            {
+                location.href="/doctorbooking"
+            }
+    }
+</script>
+</html>
+
+{% endblock %}

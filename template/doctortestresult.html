@@ -1,0 +1,48 @@
+{% extends 'doctorbase.html' %}
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        border: none;
+        width:1000px;
+      }
+      th,td{
+          padding: 10px;
+      }
+      th{
+          background-color: #03a177;
+          color: white;
+      }
+      tr:nth-child(odd) {background-color: #d9fff5;}
+</style>
+<center>
+<div style="margin: 122px;">
+    <hr><h3>Test Result</h3><hr>
+    <table border="0" style="margin:50px;"> 
+        <tr>
+            <th>S:NO</th>
+            <th>DATE</th>
+            <th>PATIENT</th>
+            <th>SYMPTOMS</th>
+            <th>PROBLEMS</th>
+            <th>HISTORY</th>
+            <th>DISGNOSIS</th>
+            <th colspan="2">TEST</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{d.0}}</td>
+            <td>{{d.3}}</td>
+            <td>{{d.8}}</td>
+            <td>{{d.4}}</td>
+            <td>{{d.5}}</td>
+            <td>{{d.6}}</td>
+            <td>{{d.9}}</td>
+            <td>{{d.10}}</td>
+            <td><a href="../static{{d.11}}" target="_blank">View test result</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+</center>
+{% endblock %}

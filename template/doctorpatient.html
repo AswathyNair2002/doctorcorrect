@@ -1,0 +1,83 @@
+{% extends 'doctorbase.html' %}
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        border: none;
+        width:800px;
+      }
+      th,td{
+          padding: 10px;
+      }
+      th{
+          background-color: #03a177;
+          color: white;
+      }
+      
+</style>
+<center>
+<div style="margin: 122px;">
+    <hr><h3>Patient details</h3><hr>
+    <table border="0" style="margin:50px;">
+        {% for d in patient %}
+            <tr><td>Patient ID:</td><td>{{d.0}}</td>
+            <td>Patient Name:</td><td>{{d.1}}</td></tr>
+            <tr><td>Address<td>{{d.2}}</td>
+            <td>Contact</td><td>{{d.3}}</td></tr>
+        </tr>
+        {% endfor %}
+    </table>
+    <hr>
+    <h4>Sick details</h4>
+    <hr>
+    <table border="0" style="margin:50px;"> 
+        {% for d in consult %}
+        <tr>
+            <td>Symptoms</td>
+            <td>{{d.4}}</td>
+        </tr>
+        <tr>
+            <td>Problems</td>
+            <td>{{d.5}}</td>
+        </tr>
+        <tr>
+            <td>Medical history</td>
+            <td>{{d.6}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% if history %}
+    <hr>
+    <h4>Sick details</h4>
+    <hr>
+    <table border="0" style="margin:50px;"> 
+        {% for d in consult %}
+        <tr>
+            <th>DOCTOR</th>
+            <th>DATE</th>
+            <th>SYMPTOMS</th>
+            <th>PROBLEMS</th>
+            <th>HISTORY</th>
+            <th>DIAGNOSIS</th>
+            <th>PRESCRIPTION</th>
+        </tr>
+        <tr>
+            <td>{{d.0}}</td>
+            <td>{{d.1}}</td>
+            <td>{{d.2}}</td>
+            <td>{{d.3}}</td>
+            <td>{{d.4}}</td>
+            <td>{{d.5}}</td>
+            <td>{{d.6}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" name="btnSubmit" value="Add prescription" class="btn btn-dark">
+    </form>
+    <br>
+</center>
+{% endblock %}

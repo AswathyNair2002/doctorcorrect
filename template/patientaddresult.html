@@ -1,0 +1,35 @@
+{% extends 'patientbase.html' %}
+{% block content  %}
+<style>
+    td{
+        padding: 10px;
+    }
+</style>
+
+<h1 style="margin:20px;">Test result</h1><hr>
+<center>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Upload the test result</td>
+                <td><input type="file" class="form-control" name="txtFile"  required ></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="btnSubmit" class="btn btn-dark" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</center>
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+    }
+</script>
+</html>
+
+{% endblock %}

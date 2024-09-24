@@ -1,0 +1,62 @@
+{% extends 'patientbase.html' %}
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        border: none;
+        width:1000px;
+      }
+      th,td{
+          padding: 10px;
+      }
+      th{
+          background-color: #03a177;
+          color: white;
+      }
+     
+</style>
+<center>
+<div style="margin: 122px;">
+    <hr><h3>Prescription</h3><hr>
+    <table border="0" style="margin:50px; "> 
+        
+        {% for d in data %}
+        <tr>
+            <td>Patient name : {{d.14}}</td>
+            <td>Date of prescription : {{d.2}}</td>
+        </tr>
+        <tr>
+            <td>Contact : {{d.17}}</td>
+            <td>Doctor name : {{d.19}}</td>
+        </tr>
+        <tr>
+            <td colspan="2">Diagnosis : {{d.3}}</td>
+        </tr>
+        <tr>
+            <td colspan="2">Prescription : {{d.4}}</td>
+        </tr>
+       
+        {% endfor %}
+    </table>
+    {% if test %}
+    <table border="0" style="margin:50px; "> 
+        {% for d in test %}
+        <tr>
+            <td><h3>Test details</h3></td>
+        </tr>
+        <tr>
+            <td>Tests prescribed : {{d.2}}</td></tr>
+            <tr> <td>Description : {{d.3}}</td>
+        </tr>
+        {% if testcount == 0 %}
+        <tr>
+            <td><a href="/patientaddresult?id={{d.0}}">Add test result</a></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+   {% endif %}
+    </div>
+</center>
+
+{% endblock %}

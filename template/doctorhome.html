@@ -1,0 +1,56 @@
+{% extends 'doctorbase.html' %}
+{% block content  %}
+<style>
+    td{
+        padding: 10px;
+    }
+</style>
+
+<h1 style="margin:20px;">Welcome {{request.session.name}}</h1><hr>
+<center>
+    <form method="POST">
+        {% csrf_token %}
+        {% for d in data %}
+        <table>
+            <tr><td colspan="2"><center><h4>Your profile</h4></center></td></tr>
+            <tr><td colspan="2"><center><img src="../static{{d.6}}" height="150px" width="120px"></center></td></tr>
+            <tr>
+                <td>NAME</td>
+                <td><input type="text" class="form-control" name="name" value="{{d.1}}" required patterns="[a-zA-Z ]+"></td>
+            </tr>
+            <tr>
+                <td>ADDRESS</td>
+                <td><textarea class="form-control" name="address" >{{d.2}}</textarea></td>
+            </tr>
+            <tr>
+                <td>CONTACTS</td>
+                <td><input type="text" class="form-control" name="contacts" value="{{d.3}}" pattern="[6789][0-9]{9}"></td>
+            </tr>
+            <tr>
+                <td>EMAIL</td>
+                <td><input type="email" class="form-control" readonly name="email" value="{{d.4}}"></td>
+            </tr>
+           
+            <tr>
+                <td></td>
+                <td><input type="submit" name="btnSubmit" class="btn btn-dark" value="Update"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        {% endfor %}
+    </form>
+</center>
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+    }
+</script>
+</html>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'patientbase.html' %}
+{% block content  %}
+
+
+  <div class="page-section bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+          <div class="row">
+            {% for d in data %}
+            <div class="col-md-6 col-lg-4 py-3 wow zoomIn">
+              <div class="card-doctor">
+                <div class="header">
+              <img src="../static{{d.6}}" alt="">
+                  <div class="meta">
+                   
+                  </div>
+                </div>
+                <div class="body">
+                  <p class="text-xl mb-0">Dr. {{d.1}}</p>
+                  <p class="text-xl mb-0">{{d.2}}</p>
+                  <p class="text-xl mb-0">Ph: {{d.3}}</p>
+                  <p class="text-xl mb-0">Rating: {{rating}}/5</p>
+                  {% if ratingcount == 0 %}
+                  <p class="text-xl mb-0"><a href="/patientrating?id={{d.0}}">Add rating</a></p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+    {% endfor %}
+           {% if feedback %}
+           <table>
+             <tr><th><h3>Feedbacks</h3></th></tr>
+            {% for d in feedback %}
+              <tr><td>{{d.0}}: {{d.1}}</td></tr>
+            {% endfor %}
+          </table>
+           {% endif %}
+          </div>
+
+        </div>
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+
+
+
+  <div class="page-section banner-home bg-image" style="background-image: url(../static/assets/img/banner-pattern.svg);">
+    <div class="container py-5 py-lg-0">
+      <div class="row align-items-center">
+        <div class="col-lg-4 wow zoomIn">
+          <div class="img-banner d-none d-lg-block">
+            <img src="../static/assets/img/mobile_app.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-8 wow fadeInRight">
+          <h1 class="font-weight-normal mb-3">Get easy access of all features using One Health Application</h1>
+          <a href="#"><img src="../static/assets/img/google_play.svg" alt=""></a>
+          <a href="#" class="ml-2"><img src="../static/assets/img/app_store.svg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .banner-home -->
+
+  {% endblock %}

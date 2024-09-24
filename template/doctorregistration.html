@@ -1,0 +1,89 @@
+{% extends 'commonbase.html' %}
+{% block content  %}
+<style>
+    td{
+        padding: 10px;
+    }
+</style>
+<div class="page-banner overlay-dark bg-image" style="background-image: url(../static/assets/img/bg_image_1.jpg);">
+    <div class="banner-section">
+      <div class="container text-center wow fadeInUp">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Doctors</li>
+          </ol>
+        </nav>
+        <h1 class="font-weight-normal">Doctors</h1>
+      </div> <!-- .container -->
+    </div> <!-- .banner-section -->
+  </div> <!-- .page-banner -->
+<br>
+  <h2 >DOCTOR REGISTRATION</h2><hr>
+<center>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+     
+        
+        <table>
+            <tr>
+                <td>Select department</td>
+                <td><select name="dep" class="form-control">
+                    {% for d in department %}
+                    <option value="{{d.0}}">{{d.1}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>NAME</td>
+                <td><input type="text" class="form-control" name="name" required patterns="[a-zA-Z ]+"></td>
+            </tr>
+            <tr>
+                <td>ADDRESS</td>
+                <td><textarea class="form-control" name="address" ></textarea></td>
+            </tr>
+            <tr>
+                <td>CONTACTS</td>
+                <td><input type="text" class="form-control" name="contacts" pattern="[6789][0-9]{9}"></td>
+            </tr>
+            <tr>
+                <td>EMAIL</td>
+                <td><input type="email" class="form-control" name="email"></td>
+            </tr>
+            <tr>
+                <td>PASSWORD</td>
+                <td><input type="password" class="form-control" name="password" pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"></td>
+            </tr>
+            <tr>
+                <td>LICENCE</td>
+                <td><input type="file" class="form-control" name="licence"></td>
+            </tr>
+            <tr>
+                <td>CONSULTATION FEES</td>
+                <td><input type="number" min="1" class="form-control" name="fees"></td>
+            </tr>
+            <tr>
+                <td>UPLOAD IMAGE</td>
+                <td><input type="file" class="form-control" name="img"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="btnSubmit" class="btn btn-dark" value="Register"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+    </form>
+</center>
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'patientbase.html' %}
+{% block content  %}
+<style>
+    td{
+        padding: 10px;
+    }
+</style>
+
+<h1 style="margin:20px;">Questionnaire</h1><hr>
+<center>
+    <form action="" method="post" >
+        {% csrf_token %}
+       <br> <h3>Result</h3>
+       <p>Your PSQ index is : {{psq}}</p>
+       <p>You are in a {{level}} stress level</p>
+       {% if level == "High" %}
+            <a href="/patientviewdoctor">Consult a doctor</a>
+       {% endif %}
+</form>
+</center>
+
+<script>
+    var msg="{{msg}}";
+    if(msg!="")
+    {
+        alert(msg);
+    }
+</script>
+</html>
+
+{% endblock %}

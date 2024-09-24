@@ -1,0 +1,72 @@
+{% extends 'patientbase.html' %}
+{% block content  %}
+<center>
+<form method="POST" style="padding: 20px 100px;">
+  {% csrf_token %}
+  <hr><h2>Search doctor</h2><hr>
+  <table>
+    <tr>
+        <td>Select department</td>
+        <td><select name="dep" class="form-control">
+            {% for d in department %}
+            <option value="{{d.0}}">{{d.1}}</option>
+            {% endfor %}
+        </select></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="submit" name="btnSubmit" class="btn btn-dark" value="Search doctor"></td>
+  </tr>
+  </table>
+</form>
+</center>
+  <div class="page-section bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+          <div class="row">
+            {% for d in data %}
+            <div class="col-md-6 col-lg-4 py-3 wow zoomIn">
+              <div class="card-doctor">
+                <!-- <a href="/patientdoctor?id={{d.0}}" target="_blank"> -->
+                <div class="header">
+                 <img src="../static{{d.5}}" alt="">
+                 
+                </div>
+              <!-- </a> -->
+                <div class="body">
+                  <p class="text-xl mb-0">Dr. {{d.1}}</p>
+                  <a href="/patientconsult?id={{d.4}}"><p>Consult doctor</p></a>
+                </div>
+              </div>
+            </div>
+    {% endfor %}
+           
+          </div>
+
+        </div>
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+
+
+
+  <div class="page-section banner-home bg-image" style="background-image: url(../static/assets/img/banner-pattern.svg);">
+    <div class="container py-5 py-lg-0">
+      <div class="row align-items-center">
+        <div class="col-lg-4 wow zoomIn">
+          <div class="img-banner d-none d-lg-block">
+            <img src="../static/assets/img/mobile_app.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-8 wow fadeInRight">
+          <h1 class="font-weight-normal mb-3">Get easy access of all features using One Health Application</h1>
+          <a href="#"><img src="../static/assets/img/google_play.svg" alt=""></a>
+          <a href="#" class="ml-2"><img src="../static/assets/img/app_store.svg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .banner-home -->
+
+  {% endblock %}
